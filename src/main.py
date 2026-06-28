@@ -100,6 +100,8 @@ async def receive_lead(request: Request):
 
         return {"status": "success", "analysis": analysis}
 
+    except HTTPException:
+        raise
     except Exception as e:
         logging.error(f"Webhook error: {e}")
         raise HTTPException(status_code=500, detail="Internal Server Error")

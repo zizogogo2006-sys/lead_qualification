@@ -1,3 +1,24 @@
-# Lead Qualification Webhook
+# AI Lead Qualification System
 
-A FastAPI webhook that scores inbound leads using GPT-4o and routes them to HubSpot. It intercepts lead data, analyzes intent, and triggers downstream automations via Make.com based on the lead score.
+Enterprise-grade microservice for evaluating incoming B2B leads. Uses an LLM (GPT-4o) to infer intent, budget, and route leads appropriately.
+
+## Architecture
+- **Language**: Python 3.11+
+- **Framework**: FastAPI
+- **LLM**: OpenAI GPT-4o
+- **CRM Integration**: HubSpot API
+- **Automation**: Make.com Webhooks
+
+## Infrastructure
+This service is fully containerized and includes a CI/CD pipeline.
+
+### Running Locally with Docker
+```bash
+docker-compose up --build
+```
+
+### Running Tests
+We use Pytest for continuous integration.
+```bash
+pytest tests/
+```
