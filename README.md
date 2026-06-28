@@ -1,3 +1,3 @@
-﻿# lead_qualification
+# Lead Qualification Webhook
 
-This is a portfolio project showcasing AI automation and data engineering capabilities.
+A FastAPI webhook that scores inbound leads using GPT-4o and routes them to HubSpot. It intercepts lead data, analyzes intent, and triggers downstream automations via Make.com based on the lead score.

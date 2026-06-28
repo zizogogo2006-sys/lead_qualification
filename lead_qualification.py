@@ -5,11 +5,9 @@ from fastapi import FastAPI, Request, HTTPException
 import openai
 import requests
 
-# Initialize App
 app = FastAPI(title="AI Lead Qualification System")
 logging.basicConfig(level=logging.INFO)
 
-# Configuration
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "your-openai-key")
 HUBSPOT_API_KEY = os.getenv("HUBSPOT_API_KEY", "your-hubspot-key")
 MAKE_WEBHOOK_URL = os.getenv("MAKE_WEBHOOK_URL", "https://hook.make.com/your-webhook")
@@ -90,16 +88,13 @@ async def receive_lead(request: Request):
 
         logging.info(f"Processing lead: {email}")
 
-        # 1. Analyze with AI
         analysis = await analyze_lead_intent(message)
         logging.info(f"Analysis result: {analysis}")
 
-        # 2. Update CRM
         crm_success = push_to_hubspot(email, name, analysis)
         if not crm_success:
             logging.warning("Failed to push to HubSpot.")
 
-        # 3. Trigger Follow-up if score is high
         if analysis.get("score", 0) >= 7:
             trigger_make_automation(email, analysis)
 
